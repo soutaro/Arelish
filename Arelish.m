@@ -56,7 +56,7 @@
 	return helper;
 }
 
-+(Arelish *)requestHelperWithEntity:(NSString *)entityName context:(NSManagedObjectContext *)context {
++(Arelish *)arelishWithEntity:(NSString *)entityName context:(NSManagedObjectContext *)context {
 	return [[[Arelish alloc] initWithEntity:entityName context:context] autorelease];
 }
 

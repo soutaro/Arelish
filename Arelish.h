@@ -34,7 +34,7 @@
 @property (nonatomic, readonly) NSMutableArray* predicates;
 @property (nonatomic, readonly) NSMutableArray* sortDescriptors;
 
-+(Arelish*) requestHelperWithEntity:(NSString*)entityName context:(NSManagedObjectContext*)context;
++(Arelish*) arelishWithEntity:(NSString*)entityName context:(NSManagedObjectContext*)context;
 
 -(Arelish*) initWithEntity:(NSString*)entityName context:(NSManagedObjectContext*)context;
 -(NSFetchRequest*) request;
