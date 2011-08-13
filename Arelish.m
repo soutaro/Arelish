@@ -25,6 +25,15 @@
 @synthesize predicates=predicates_;
 @synthesize sortDescriptors=sortDescriptors_;
 
+-(NSInteger)count {
+	NSUInteger count = [self->context_ countForFetchRequest:[self request] error:nil];
+	if (count == NSNotFound) {
+		count = 0;
+	}
+	
+	return count;
+}
+
 -(id) init {
 	self = [super init];
 	
@@ -118,6 +127,15 @@
 
 -(Arelish *)where:(NSString *)attr equalsToInt:(NSInteger)value {
 	return [self where:attr is:[NSNumber numberWithInt:value]];
+}
+
+-(Arelish *)where:(NSString *)attr between:(id)from AND:(id)to {
+    NSArray* array = [NSArray arrayWithObjects:from, to, nil];
+    return [self where:attr between:array];
+}
+
+-(Arelish *)where:(NSString *)attr between:(NSArray *)range {
+    return [self where:[NSPredicate predicateWithFormat:@"%K BETWEEN %@", attr, range]];
 }
 
 -(Arelish *)order:(NSSortDescriptor *)descr {

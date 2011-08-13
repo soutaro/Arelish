@@ -19,7 +19,7 @@
 // THE SOFTWARE.
 
 #import <Foundation/Foundation.h>
-
+#import <CoreData/CoreData.h>
 
 @interface Arelish : NSObject<NSCopying> {
 	NSManagedObjectContext* context_;
@@ -34,6 +34,8 @@
 @property (nonatomic, readonly) NSMutableArray* predicates;
 @property (nonatomic, readonly) NSMutableArray* sortDescriptors;
 
+@property (nonatomic, readonly) NSInteger count;
+
 +(Arelish*) arelishWithEntity:(NSString*)entityName context:(NSManagedObjectContext*)context;
 
 -(Arelish*) initWithEntity:(NSString*)entityName context:(NSManagedObjectContext*)context;
@@ -44,6 +46,8 @@
 -(Arelish*) where:(NSString*)attr is:(id)value;
 -(Arelish*) where:(NSString*)attr IN:(id)firstObj, ... NS_REQUIRES_NIL_TERMINATION;
 -(Arelish*) where:(NSString*)attr equalsToInt:(NSInteger)value;
+-(Arelish*) where:(NSString*)attr between:(id)from AND:(id)to;
+-(Arelish*) where:(NSString*)attr between:(NSArray*)range;
 
 -(Arelish*) order:(NSSortDescriptor*)descr;
 -(Arelish*) order:(NSString*)attr ascending:(BOOL)ascending;
